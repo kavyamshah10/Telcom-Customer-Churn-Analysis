@@ -1,0 +1,17 @@
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore models if you don’t want them yet
+models/
+
+# Ignore SQL and dashboard folders (for now)
+sql/
+dashboard/
+
+# Ignore large datasets if needed
+data/*.csv
+data/*.xlsx
