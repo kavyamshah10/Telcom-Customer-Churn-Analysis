@@ -9,7 +9,7 @@ __pycache__/
 models/
 
 # Ignore SQL and dashboard folders (for now)
-sql/
+git
 dashboard/
 
 # Ignore large datasets if needed
