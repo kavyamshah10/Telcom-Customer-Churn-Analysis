@@ -10,7 +10,7 @@ models/
 
 # Ignore SQL and dashboard folders (for now)
 git
-dashboard/
+
 
 # Ignore large datasets if needed
 data/*.csv
