@@ -18,7 +18,7 @@ This project analyzes customer churn behavior in a telecom company using data an
 ## 🔷 Tools & Technologies
 - Python (Pandas, NumPy, Matplotlib, Seaborn)
 - Scikit-learn
----
+---PostgreSql
 
 ## 🔷 Key Steps
 
@@ -34,6 +34,11 @@ This project analyzes customer churn behavior in a telecom company using data an
 - Payment method vs churn
 - Tenure and charges impact
 - Correlation analysis
+  
+### 3.Sql
+- Wrote medium-to-advanced queries to extract insights
+- Identified high-risk customer segments
+- Created KPIs like churn rate, revenue loss, and customer distribution
 
 ### 4. Machine Learning
 - Logistic Regression model
@@ -44,3 +49,11 @@ This project analyzes customer churn behavior in a telecom company using data an
 - K-Means clustering applied
 - Customer segmentation into groups
 - Cluster-based insights
+
+### 5. Power BI Dashboard
+- Built an interactive dashboard for business insights
+- Visualized churn rate, revenue metrics, and customer segmentation
+
+### 6. Deployment
+- Deployed the prediction model using Streamlit
+- Built an interactive app where users can input customer details and get churn predictions
