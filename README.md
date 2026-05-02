@@ -6,7 +6,8 @@ This project analyzes customer churn behavior in a telecom company using data an
 ## Project Workflow
 - Cleaned & preprocessed raw data and performed EDA to uncover churn drivers
 - Used SQL to generate KPIs like churn rate, revenue loss, and customer segments
-- Built ML models (Logistic Regression & KMeans) for prediction and segmentation
+- Built multiple ML models including Logistic Regression, Random Forest, and XGBoost, and selected the best model based on performance metrics.
+- Applied K-Means clustering to segment customers into high, medium, and low-risk groups
 - Created an interactive Power BI dashboard for business insights
 - Deployed a Streamlit app for real-time churn prediction
 
