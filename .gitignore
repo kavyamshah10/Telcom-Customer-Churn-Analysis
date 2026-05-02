@@ -5,12 +5,7 @@
 __pycache__/
 *.pyc
 
-# Ignore models if you don’t want them yet
 
-# Ignore SQL and dashboard folders (for now)
+
 git
 
-
-# Ignore large datasets if needed
-data/*.csv
-data/*.xlsx
