@@ -6,7 +6,6 @@ __pycache__/
 *.pyc
 
 # Ignore models if you don’t want them yet
-models/
 
 # Ignore SQL and dashboard folders (for now)
 git
