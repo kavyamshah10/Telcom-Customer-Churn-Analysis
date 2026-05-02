@@ -2,20 +2,19 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# ---------------- LOAD MODELS ---------------- #
+# ---------------- LOAD FILES ---------------- #
 model = joblib.load("models/logistic/model.pkl")
 scaler = joblib.load("models/logistic/scaler.pkl")
 features = joblib.load("models/logistic/features.pkl")
-kmeans = joblib.load("models/kmeans/kmeans.pkl")
+kmeans = joblib.load("models/kmeans/kmeans_model.pkl")
 
 # ---------------- TITLE ---------------- #
-st.title("📊 Telco Customer Analytics Dashboard")
-st.write("Predict Customer Churn & Segment Customers")
+st.title("📊 Telco Customer Analytics")
+st.write("Churn Prediction + Customer Segmentation")
 
-# ---------------- INPUT SECTION ---------------- #
+# ---------------- INPUT ---------------- #
 st.header("Enter Customer Details")
 
-# Layout for better UI
 col1, col2 = st.columns(2)
 
 with col1:
@@ -50,7 +49,7 @@ with col2:
         "Bank transfer (automatic)", "Credit card (automatic)"
     ])
 
-# ---------------- CREATE INPUT DATA ---------------- #
+# ---------------- DATAFRAME ---------------- #
 input_dict = {
     'tenure': tenure,
     'MonthlyCharges': monthly,
@@ -78,7 +77,6 @@ input_df = pd.DataFrame([input_dict])
 # ---------------- ENCODING ---------------- #
 input_df = pd.get_dummies(input_df)
 
-# Match training features
 for col in features:
     if col not in input_df.columns:
         input_df[col] = 0
@@ -91,40 +89,44 @@ input_scaled = scaler.transform(input_df)
 # ---------------- PREDICTION ---------------- #
 if st.button("🔍 Analyze Customer"):
 
-    # Churn Prediction
-    pred = model.predict(input_scaled)[0]
+    # Churn prediction
     prob = model.predict_proba(input_scaled)[0][1]
+    pred = 1 if prob > 0.4 else 0
 
-    # Customer Segmentation
+    # Clustering
     cluster = kmeans.predict(input_scaled)[0]
 
-    st.subheader("📢 Results")
-
-    # Churn Result
-    if pred == 1:
-        st.error(f"⚠️ Customer likely to churn (Probability: {prob:.2f})")
-    else:
-        st.success(f"✅ Customer likely to stay (Probability: {prob:.2f})")
-
-    # Segmentation Result
+    # Correct mapping based on your results
     cluster_map = {
-        0: "🔴 High Risk Customer",
-        1: "🟢 Loyal Customer",
-        2: "🟡 Medium Risk Customer"
+        1: "🔴 High Risk (32% churn)",
+        0: "🟡 Medium Risk (24% churn)",
+        2: "🟢 Loyal Customer (7% churn)"
     }
 
-    st.info(f"Customer Segment: {cluster_map[cluster]}")
+    segment = cluster_map[cluster]
+
+    # ---------------- OUTPUT ---------------- #
+    st.subheader("📢 Results")
+
+    # Churn
+    if pred == 1:
+        st.error(f"⚠️ High Risk of Churn ({prob:.2f})")
+    else:
+        st.success(f"✅ Low Risk of Churn ({prob:.2f})")
+
+    # Segment
+    st.info(f"Customer Segment: {segment}")
 
     # ---------------- BUSINESS INSIGHTS ---------------- #
-    st.subheader("💡 Business Recommendations")
+    st.subheader("💡 Business Recommendation")
 
-    if cluster == 0:
-        st.write("👉 Offer discounts, retention campaigns, or special plans.")
-    elif cluster == 1:
-        st.write("👉 Upsell premium services and maintain satisfaction.")
+    if cluster == 1:
+        st.write("👉 Offer discounts, retention plans, or proactive support.")
+    elif cluster == 0:
+        st.write("👉 Monitor customer behavior and engage with offers.")
     else:
-        st.write("👉 Monitor behavior and provide targeted offers.")
+        st.write("👉 Loyal customer – focus on upselling and premium services.")
 
-    # ---------------- EXTRA INFO ---------------- #
-    st.subheader("📊 Model Insights")
+    # ---------------- EXTRA ---------------- #
+    st.subheader("📊 Model Confidence")
     st.write(f"Churn Probability: {prob:.2%}")
