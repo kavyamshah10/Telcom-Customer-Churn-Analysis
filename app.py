@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # ---------------- LOAD FILES ---------------- #
-model = joblib.load("models/logistic/model.pkl")
+model = joblib.load("models/logistic/LogisticRegression.pkl")
 scaler = joblib.load("models/logistic/scaler.pkl")
 features = joblib.load("models/logistic/features.pkl")
 kmeans = joblib.load("models/kmeans/kmeans_model.pkl")
@@ -19,35 +19,66 @@ col1, col2 = st.columns(2)
 
 with col1:
     tenure = st.slider("Tenure (months)", 0, 72)
+    st.caption("How long the customer has been with the company")
+
     monthly = st.number_input("Monthly Charges")
+    st.caption("Monthly bill amount in USD")
+
     total = st.number_input("Total Charges")
+    st.caption("Total amount paid till date")
 
     gender = st.selectbox("Gender", ["Male", "Female"])
+    st.caption("Customer's gender")
+
     senior = st.selectbox("Senior Citizen", ["Yes","No"])
+    st.caption("Is the customer 65 or older?")
+
     partner = st.selectbox("Partner", ["Yes", "No"])
+    st.caption("Does the customer have a spouse/partner?")
+
     dependents = st.selectbox("Dependents", ["Yes", "No"])
+    st.caption("Does the customer have dependents (children, family)?")
 
     phoneservice = st.selectbox("Phone Service", ["Yes", "No"])
+    st.caption("Does the customer have a landline phone connection?")
+
     multiplelines = st.selectbox("Multiple Lines", ["Yes", "No", "No phone service"])
+    st.caption("Does the customer use more than one phone line?")
 
 with col2:
     internet = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
+    st.caption("Type of internet connection")
 
     onlinesecurity = st.selectbox("Online Security", ["Yes", "No", "No internet service"])
+    st.caption("Extra protection against online threats")
+
     onlinebackup = st.selectbox("Online Backup", ["Yes", "No", "No internet service"])
+    st.caption("Cloud backup for files")
+
     deviceprotection = st.selectbox("Device Protection", ["Yes", "No", "No internet service"])
+    st.caption("Covers device repair/replacement")
+
     techsupport = st.selectbox("Tech Support", ["Yes", "No", "No internet service"])
+    st.caption("24/7 technical support availability")
 
     streamingtv = st.selectbox("Streaming TV", ["Yes", "No", "No internet service"])
+    st.caption("TV streaming services included")
+
     streamingmovies = st.selectbox("Streaming Movies", ["Yes", "No", "No internet service"])
+    st.caption("Movie streaming services included")
 
     contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
+    st.caption("Customer's contract type")
+
     paperless = st.selectbox("Paperless Billing", ["Yes", "No"])
+    st.caption("Bills sent via email instead of paper")
 
     payment = st.selectbox("Payment Method", [
         "Electronic check", "Mailed check",
         "Bank transfer (automatic)", "Credit card (automatic)"
     ])
+    st.caption("Preferred payment method")
+
 
 # ---------------- DATAFRAME ---------------- #
 input_dict = {
