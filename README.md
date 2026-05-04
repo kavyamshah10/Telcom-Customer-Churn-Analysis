@@ -47,4 +47,4 @@ High-Level KPI Summary
 - Use churn prediction model to identify high-risk customers early and take proactive actions
 
 ## Live app :
-[https://telco-customer-churn-7wdqtjqkmzbzbvkcktcycx.streamlit.app]
+[https://telcom-customer-churn-analysis-lr5plvx7jbflsq36avdwdx.streamlit.app]
