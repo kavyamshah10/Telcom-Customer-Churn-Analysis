@@ -1,50 +1,49 @@
-# Telco Customer Churn Analysis
+🚀 End-to-End Telco Customer Churn Analysis & Prediction Project
 
-##  Project Overview
-This project analyzes customer churn behavior in a telecom company using data analytics and machine learning techniques. The goal is to identify key factors affecting churn and predict customers likely to leave.
+Customer churn is one of the biggest challenges in the telecom industry, directly impacting revenue, customer lifetime value, and business growth.
 
-## Project Workflow
-- Cleaned & preprocessed raw data and performed EDA to uncover churn drivers
-- Used SQL to generate KPIs like churn rate, revenue loss, and customer segments
-- Built multiple ML models including Logistic Regression, Random Forest, and XGBoost, and selected the best model based on performance metrics.
-- Applied K-Means clustering to segment customers into high, medium, and low-risk groups
-- Created an interactive Power BI dashboard for business insights
-- Deployed a Streamlit app for real-time churn prediction
+The key business problem I focused on was:
+👉 Why are customers leaving, and how can we predict and prevent it?
 
-## Key insights
-High-Level KPI Summary
-​- Churn Overview: Out of 7,032 total customers, 1,869 have churned, resulting in a significantly high churn rate of 26.58%.
-​- Financial Impact: The company has lost approximately 139.13K in revenue due to churn, which is roughly 30% of the total revenue (455.66K).
+🔹 Project Workflow
+Cleaned & preprocessed raw data and performed EDA to uncover churn drivers
+Used SQL to generate KPIs like churn rate, revenue loss, and customer segments
+Built ML models (Logistic Regression, Random Forest, XGBoost) and compared performance
+Selected final model based on business objective (maximizing churn detection)
+Applied K-Means clustering to segment customers into risk groups
+Created an interactive Power BI dashboard for insights
+Deployed a Streamlit app for real-time churn prediction
 
-​Key Drivers of Churn
-​1. Contract and Tenure Vulnerability
-​- Month-to-Month Risk: The vast majority of churn occurs among customers on Month-to-month contracts. In contrast, customers with one or two-year contracts show very high retention.
-​- The "New Customer" Critical Period: Churn is highest in the first year. The 0-1 year tenure group has a massive churn rate of 48.54%. This rate drops drastically as tenure increases, falling to just 9.64% for those with 4+ years of loyalty.
+🔍 Why Customers Are Churning (Key Insights)
+Churn rate: 26.58% (1,869 / 7,032 customers)
+~30% revenue loss (~139K) linked to churn
+Month-to-month contracts → highest churn risk
+New customers (0–1 year) churn more (poor onboarding experience)
+Fiber optic users churn ~2x more than DSL → possible service/value issues
+Customers without Tech Support / Security churn significantly more
+High monthly charges ($70–$100) strongly linked to churn
+Electronic check users show higher churn behavior
 
-​2. Service-Specific Pain Points
-​- Fiber Optic Issues: Customers with Fiber optic internet service have a much higher churn rate (41.89%) compared to DSL users (18.96%). This suggests potential   issues with pricing or service stability for fiber.
-​- Lack of Value-Added Services: Customers who do not have Tech Support, Online Security, or Device Protection are significantly more likely to leave. For example, churn among those without Tech Support is 41.65%, compared to only 15.20% for those who have it.
+🤖 Model Selection Strategy
+I compared multiple models:
+Logistic Regression → 94% recall (best at identifying churners)
+Random Forest & XGBoost → higher accuracy (~76–77%) but lower recall
+Since the business goal is to minimize customer loss, I selected Logistic Regression as the final model, prioritizing recall over accuracy to capture maximum at-risk customers.
 
-​3. Payment and Billing Friction
-​- Electronic Checks: This payment method is associated with the highest volume of churned customers.
-​- Paperless Billing: Customers signed up for paperless billing churn at a higher rate (33.59%) than those who receive paper bills (16.38%).
+💡 How This Solves a Real-World Problem
+The deployed Streamlit app helps businesses:
+Predict whether a customer is likely to churn in real time
+Identify high-risk customers early
+👉 This reduces revenue loss and improves customer retention strategies.
 
-​4.Demographic and Behavioral Patterns
-​- Monthly Charges: Churn appears to peak as monthly charges increase, specifically in the $70 - $100 range, suggesting that price sensitivity is a major factor.
-​- Dependents and Partners: Customers with no dependents or no partners are more "nomadic" and likely to churn compared to those with family ties, who tend to be more stable.
-​- Streaming Services: Interestingly, customers who do not use Streaming TV or Movies churn at a slightly higher rate, potentially because they see less value in the overall internet package.
+💡 Business Recommendations
+Convert month-to-month users into long-term contracts with incentives
+Target high monthly charge customers with personalized plans
+Improve onboarding experience for new customers
+Encourage auto-pay methods over electronic checks
+Use churn prediction model for proactive retention campaigns
 
-​5.Strategic Recommendations
-​- Incentivize Long-term Contracts: Offer discounts or loyalty rewards to move "Month-to-Month" users into 1-year agreements.
-​- Improve the Onboarding Experience: Since nearly half of new customers leave within the first year, a "First 90 Days" engagement program is critical.
-​- Bundle Security/Support: Offer Online Security or Tech Support as a free or discounted trial to Fiber Optic users to increase "stickiness" and perceived value.
+🛠️ Tools & Technologies
+Python | Pandas | NumPy | scikit-learn | SQL | Power BI | Streamlit
 
-## Business recommendation:
-- Offer discounts or incentives to convert month-to-month customers into     long-term contracts
-- Provide targeted retention offers for high monthly charge customers
-- Focus on improving onboarding experience for new customers (low tenure)
-- Encourage customers to switch from electronic check to auto-pay methods  for better retention
-- Use churn prediction model to identify high-risk customers early and take proactive actions
-
-## Live app :
-[https://telco-customer-churn-7wdqtjqkmzbzbvkcktcycx.streamlit.app]
+🌐 Live App:[https://telcom-customer-churn-analysis-lr5plvx7jbflsq36avdwdx.streamlit.app⁠]
