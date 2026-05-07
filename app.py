@@ -21,63 +21,63 @@ with col1:
     tenure = st.slider("Tenure (months)", 0, 72)
     st.caption("How long the customer has been with the company")
 
-    monthly = st.number_input("Monthly Charges")
+        # Text input for dollar values
+    monthly_str = st.text_input("Monthly Charges", help="Enter amount (e.g., $50)")
     st.caption("Monthly bill amount in USD")
 
-    total = st.number_input("Total Charges")
+    total_str = st.text_input("Total Charges", help="Enter amount (e.g., $1200)")
     st.caption("Total amount paid till date")
 
-    gender = st.selectbox("Gender", ["Male", "Female"])
-    st.caption("Customer's gender")
+    # Convert to float safely
+    def parse_dollars(value):
+        try:
+            return float(value.replace("$", "").strip())
+        except:
+            return 0.0   # fallback if invalid
 
-    senior = st.selectbox("Senior Citizen", ["Yes","No"])
-    st.caption("Is the customer 65 or older?")
+    monthly = parse_dollars(monthly_str)
+    total = parse_dollars(total_str)
 
-    partner = st.selectbox("Partner", ["Yes", "No"])
-    st.caption("Does the customer have a spouse/partner?")
+    gender = st.selectbox("Gender", ["Male", "Female"],help="Customer's gender")
 
-    dependents = st.selectbox("Dependents", ["Yes", "No"])
-    st.caption("Does the customer have dependents (children, family)?")
+    senior = st.selectbox("Senior Citizen", ["Yes","No"],help="Is the customer 65 or older?")
 
-    phoneservice = st.selectbox("Phone Service", ["Yes", "No"])
-    st.caption("Does the customer have a landline phone connection?")
+    partner = st.selectbox("Partner", ["Yes", "No"],help="Does the customer have a spouse/partner?")
+   
 
-    multiplelines = st.selectbox("Multiple Lines", ["Yes", "No", "No phone service"])
-    st.caption("Does the customer use more than one phone line?")
+    dependents = st.selectbox("Dependents", ["Yes", "No"],help="Does the customer have dependents (children, family)?")
+    
+
+    phoneservice = st.selectbox("Phone Service", ["Yes", "No"],help="Does the customer have a landline phone connection?")
+    "Does the customer have a landline phone connection?"
+
+    multiplelines = st.selectbox("Multiple Lines", ["Yes", "No", "No phone service"],help="Does the customer use more than one phone line?")
+    
 
 with col2:
-    internet = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
-    st.caption("Type of internet connection")
+    internet = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"],help="Type of internet connection")
 
-    onlinesecurity = st.selectbox("Online Security", ["Yes", "No", "No internet service"])
-    st.caption("Extra protection against online threats")
+    onlinesecurity = st.selectbox("Online Security", ["Yes", "No", "No internet service"],help="Extra protection against online threats")
+    
 
-    onlinebackup = st.selectbox("Online Backup", ["Yes", "No", "No internet service"])
-    st.caption("Cloud backup for files")
+    onlinebackup = st.selectbox("Online Backup", ["Yes", "No", "No internet service"],help="Cloud backup for files")
 
-    deviceprotection = st.selectbox("Device Protection", ["Yes", "No", "No internet service"])
-    st.caption("Covers device repair/replacement")
+    deviceprotection = st.selectbox("Device Protection", ["Yes", "No", "No internet service"],help="Covers device repair/replacement")
 
-    techsupport = st.selectbox("Tech Support", ["Yes", "No", "No internet service"])
-    st.caption("24/7 technical support availability")
+    techsupport = st.selectbox("Tech Support", ["Yes", "No", "No internet service"],help="24/7 technical support availability")
 
-    streamingtv = st.selectbox("Streaming TV", ["Yes", "No", "No internet service"])
-    st.caption("TV streaming services included")
+    streamingtv = st.selectbox("Streaming TV", ["Yes", "No", "No internet service"],help="TV streaming services included")
 
-    streamingmovies = st.selectbox("Streaming Movies", ["Yes", "No", "No internet service"])
-    st.caption("Movie streaming services included")
+    streamingmovies = st.selectbox("Streaming Movies", ["Yes", "No", "No internet service"],help="Movie streaming services included")
 
-    contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
-    st.caption("Customer's contract type")
+    contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"],help="Customer's contract type")
 
-    paperless = st.selectbox("Paperless Billing", ["Yes", "No"])
-    st.caption("Bills sent via email instead of paper")
+    paperless = st.selectbox("Paperless Billing", ["Yes", "No"],help="Bills sent via email instead of paper")
 
     payment = st.selectbox("Payment Method", [
         "Electronic check", "Mailed check",
         "Bank transfer (automatic)", "Credit card (automatic)"
-    ])
-    st.caption("Preferred payment method")
+    ],help="Preferred payment method")
 
 
 # ---------------- DATAFRAME ---------------- #
@@ -118,6 +118,7 @@ input_df = input_df[features]
 input_scaled = scaler.transform(input_df)
 
 # ---------------- PREDICTION ---------------- #
+
 if st.button("🔍 Analyze Customer"):
 
     # Churn prediction
