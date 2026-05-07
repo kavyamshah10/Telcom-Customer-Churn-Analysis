@@ -18,12 +18,12 @@ st.header("Enter Customer Details")
 col1, col2 = st.columns(2)
 
 with col1:
-    tenure = st.slider("Tenure (months)", 0, 72)
-    st.caption("How long the customer has been with the company")
+    tenure = st.slider("Tenure (months)", 0, 72,help="How long the customer has been with the company")
+    
 
         # Text input for dollar values
-    monthly_str = st.text_input("Monthly Charges", help="Enter amount (e.g., $50)")
-    st.caption("Monthly bill amount in USD")
+    monthly_str = st.text_input("Monthly Charges", help="Monthly bill amount in USD")
+    
 
     total_str = st.text_input("Total Charges", help="Enter amount (e.g., $1200)")
     st.caption("Total amount paid till date")
